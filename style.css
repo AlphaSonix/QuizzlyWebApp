@@ -1,0 +1,144 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    color: #293264;
+    background: #F5F7FB;
+}
+
+.bg-intro {
+    animation: loadBackground 1s ease-in forwards,
+    bounce 1s ease-in-out 2 alternate;
+    border: 1px solid transparent;
+    height: 100vh;
+}
+
+@keyframes bounce {
+    0% {
+        background-position: top right, bottom left;
+    }
+    50% {
+        background-position: top 80px right, bottom 80px left;
+    }
+    100% {
+        background-position: top right, bottom left;
+    }
+}
+
+@keyframes loadBackground {
+    0% {
+        background: none;
+    }
+    100% {
+        background: radial-gradient(farthest-side, red 96%, transparent) top right / 200px 200px,
+                    radial-gradient(farthest-side, yellow 96%, transparent) bottom left / 200px 200px;
+        background-repeat: no-repeat;
+    }
+}
+
+h1, h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.menu-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 60%;
+    margin: 25vh auto;
+}
+
+.menu-text button, .check-btn{
+    height: 50px;
+    width: 200px;
+    border-radius: 6px;
+    border: none;
+    background: #4D5B9E;
+    color: #F5F7FB;
+    cursor: pointer;
+}
+
+button:active, .check-btn:active {
+    box-shadow: inset 0px 0px 5px #c1c1c1;    
+}
+
+button:focus, .check-btn:focus {
+    outline: none;
+}
+
+.game-container{
+    max-width: 70%;
+    margin: 2em auto;
+}
+
+.game-container h2 {
+    margin-top: -20px;
+    padding: 10px;
+}
+
+.choice-list{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    justify-content: space-around;
+}
+
+.answer-btn {
+    padding: 1em;
+    min-width: 100px;
+    background: transparent;
+    border: 1px solid #293264;
+    border-radius: 25px;
+    color: #293264;
+    font-size: 0.839rem;
+    cursor: pointer;
+}
+
+.answer-btn:hover {
+    color: red;
+}
+
+.score {
+    text-align: center;
+}
+
+.selected {
+    background: #D6DBF5; 
+}
+
+.check-btn {
+    display: block;
+    margin: 0 auto 1.5em;
+}
+
+.check-btn:hover{
+    background: yellow;
+}
+
+/* Pseudo classes */
+
+.hidden{
+    display: none;
+}
+
+.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.loading {
+    margin: 25vh auto;
+}
+
+/* Larger Devices */
+
+@media (min-width: 560px) {
+    .choice-list {
+        display: flex;
+    }
+}
