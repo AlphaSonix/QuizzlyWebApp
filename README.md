@@ -7,14 +7,10 @@ open index.html
 ```
 Note that using Webpack is obselete and this archive has been provided
 for compatibility reasons. Prefer using Vite, check it at https://vitejs.dev
-## About Scrimba
+## About Quizzly
 
-At Scrimba our goal is to create the best possible coding school at the cost of a gym membership! 💜
-If we succeed with this, it will give anyone who wants to become a software developer a realistic shot at succeeding, regardless of where they live and the size of their wallets 🎉
-The Frontend Developer Career Path aims to teach you everything you need to become a Junior Developer, or you could take a deep-dive with one of our advanced courses 🚀
-
-- [Our courses](https://scrimba.com/allcourses)
-- [The Frontend Career Path](https://scrimba.com/learn/frontend)
-- [Become a Scrimba Pro member](https://scrimba.com/pricing)
-
-Happy Coding!
+The Quizzly App was developed as a project from scratch as part of the Scrimba frontend developer course. React, CSS and Javascript were
+involved in the creation of this app. The app also makes use of the OMDb database to find questions and render them to the DOM. Several 
+considerations were put in place such as adding a loading screen while the API data is fetched. Ensuring strict guards such as being 
+unable to submit until all questions have been answered. There is also the ability to restart the game once the game has ended load up a new
+set of questions. 
