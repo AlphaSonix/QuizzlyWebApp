@@ -1,29 +1,31 @@
 import React from "react"
 import {nanoid} from "nanoid"
 import {decode} from 'html-entities';
+import { clsx } from "clsx"
 
 export default function Game(props){
     
     const [answers, setAnswers] = React.useState([])
     const [previousSelectedId, setPreviousSelectedId] = React.useState(null)
     
+    //Inserts correct answer choice into a random position in each question. 
     React.useEffect(()=>{
-    const ranNum = Math.floor(Math.random()*4)
-    const answerArr = props.question.incorrect_answers
-    answerArr.splice(ranNum, 0, props.question.correct_answer)
-    const correctAnswer = decode(props.question.correct_answer)
-    
-    const answerObj = answerArr.map(answer => {
-        return {
-            id: nanoid(),
-            choice: decode(answer),
-            isTrue: decode(answer) === correctAnswer ? true : false,
-            selected: false
-        }
-    })  
-        setAnswers(answerObj)
-        setPreviousSelectedId(null)
-        console.log(answerObj)
+        const ranNum = Math.floor(Math.random()*4)
+        const answerArr = props.question.incorrect_answers
+        answerArr.splice(ranNum, 0, props.question.correct_answer)
+        const correctAnswer = decode(props.question.correct_answer)
+        props.setShowAnswer(correctAnswer)
+        
+        const answerObj = answerArr.map(answer => {
+            return {
+                id: nanoid(),
+                choice: decode(answer),
+                isTrue: decode(answer) === correctAnswer ? true : false,
+                selected: false
+            }
+        })  
+            setAnswers(answerObj)
+            setPreviousSelectedId(null)
     },[props.question])
     
     function selectChoice(id){
@@ -31,9 +33,9 @@ export default function Game(props){
             const updatedAnswers = prevAnswers.map(answer => {
                  const isCurrentlySelected = answer.selected
                  if (answer.id === id) {
-                    if (!isCurrentlySelected){
-                       props.handleAnswerSelection(true) 
-                    }
+                    if (!isCurrentlySelected && previousSelectedId === null){
+                       props.handleAnswerSelection(true)
+                    } 
                     if (answer.isTrue && !isCurrentlySelected) {
                         props.setCount(prev => prev + 1)
                     }
@@ -49,19 +51,17 @@ export default function Game(props){
                     return { ...answer, selected: false }
                 }
             })
-
-        console.log(props.selectionCheck)
-        console.log(props.count)
+            
         return updatedAnswers
         })
     }
     
     const answerElement = answers.map(answer => (
-        <button 
+        <button
         key={answer.id}
         onClick={() => selectChoice(answer.id)} 
-        className="answer-btn" 
-        style={{backgroundColor: answer.selected ? "#D6DBF5" : "transparent"}}
+        className={clsx("answer-btn", props.gameOver && answer.isTrue ? "right-answer" : "")}  
+        style={{backgroundColor: answer.selected ? "#4E63D0" : "", color: answer.selected ? "white" : ""}}
         >
         {answer.choice}
         </button>

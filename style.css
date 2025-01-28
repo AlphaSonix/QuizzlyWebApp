@@ -43,6 +43,13 @@ h1, h2 {
     margin-bottom: 10px;
 }
 
+select {
+    margin: 1em;
+    width: 150px;
+    height: 40px;
+    box-shadow: 2px 2px 5px gray;
+}
+
 .menu-text{
     display: flex;
     flex-direction: column;
@@ -60,6 +67,7 @@ h1, h2 {
     background: #4D5B9E;
     color: #F5F7FB;
     cursor: pointer;
+    font-weight: bold;
 }
 
 button:active, .check-btn:active {
@@ -96,10 +104,21 @@ button:focus, .check-btn:focus {
     color: #293264;
     font-size: 0.839rem;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .answer-btn:hover {
     color: red;
+}
+
+.selected-answer {
+    background: #4D5B9E;
+    color: white;
+}
+
+.right-answer {
+    background-color: green;
+    color: white;
 }
 
 .score {
@@ -113,10 +132,11 @@ button:focus, .check-btn:focus {
 .check-btn {
     display: block;
     margin: 0 auto 1.5em;
+    font-weight: bold;
 }
 
 .check-btn:hover{
-    background: yellow;
+    background: green;
 }
 
 /* Pseudo classes */
